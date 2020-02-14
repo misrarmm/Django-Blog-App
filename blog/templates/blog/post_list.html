@@ -1,37 +1,13 @@
-<html>
-    <head>
-        <script>
-            n =  new Date();
-y = n.getFullYear();
-m = n.getMonth() + 1;
-d = n.getDate();
-document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
 
-        </script>
-        <title>Django First blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django First Blog</a></h1>
-        </div>
-
-        <div>
-            {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div>
-            <p>
-                
-                </p>
-            <p id="date">published: <script> document.write(new Date().toLocaleDateString()); </script></p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
-    </body>
-</html>
+                {% extends 'blog/base.html' %}
+                {% block content %}
+                   {% for post in posts %}
+                       <div class="post">
+                           <div class="date">
+                               {{ post.published_date }}
+                           </div>
+                           <h2><a href="">{{ post.title }}</a></h2>
+                           <p>{{ post.text|linebreaksbr }}</p>
+                       </div>
+                   {% endfor %}
+               {% endblock %}
